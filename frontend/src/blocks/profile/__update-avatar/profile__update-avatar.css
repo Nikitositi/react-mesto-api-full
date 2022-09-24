@@ -1,0 +1,19 @@
+
+.profile__update-avatar {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  opacity: 0;
+  z-index: 2;
+  background-image: url(../../../images/update-profile.svg);
+  background-color: #000;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 26px 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.profile__update-avatar:hover {
+  opacity: 0.8;
+}

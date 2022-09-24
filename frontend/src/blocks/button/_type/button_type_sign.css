@@ -1,0 +1,17 @@
+.button_type_sign {
+  margin-top: 216px;
+  width: 100%;
+  min-height: 50px;
+  padding: 0;
+  border: none;
+  border-radius: 2px;
+  background-color: #fff;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #000;
+}
+
+.button_type_sign:hover {
+  opacity: 0.85;
+}

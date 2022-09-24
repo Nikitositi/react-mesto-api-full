@@ -1,0 +1,14 @@
+.button_type_edit {
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  background: url('../../../images/edit-btn.svg') no-repeat center;
+  border: 1px solid #fff;
+}
+
+@media screen and (max-width: 600px) {
+  .button_type_edit{
+    width: 18px;
+    height: 18px;
+  }
+}

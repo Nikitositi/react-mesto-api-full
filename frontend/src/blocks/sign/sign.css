@@ -1,0 +1,10 @@
+.sign {
+  max-width: 358px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

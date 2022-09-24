@@ -1,0 +1,18 @@
+.sign__input {
+  width: 100%;
+  margin-top: 30px;
+  padding: 0;
+  padding-bottom: 13px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+  background: none;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ccc;
+}
+
+.sign__input:first-child {
+  margin-top: 0;
+}
