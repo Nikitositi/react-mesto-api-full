@@ -53,7 +53,11 @@ function App() {
         });
     }
   }, [loggedIn]);
-  
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   function getData() {
     auth.getData().then((res) => {
       if (!res.hasOwnProperty('message')) {
@@ -66,10 +70,6 @@ function App() {
       }
     });
   }
-  
-  useEffect(() => {
-    getData();
-  }, []);
   
   // Закрытие попапов на Esc
   useEffect(() => {
