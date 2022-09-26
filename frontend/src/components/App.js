@@ -66,7 +66,7 @@ function App() {
       } else {
         localStorage.removeItem('jwt');
         setLoggedIn(false);
-        history.push('/sing-in');
+        history.push('/sign-in');
       }
     });
   }
