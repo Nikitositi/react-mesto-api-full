@@ -102,8 +102,8 @@ class Api {
 }
 
 const api = new Api({
-  // baseUrl: 'https://api.nikitositi.nomoredomains.sbs',
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://api.nikitositi.nomoredomains.sbs',
+  // baseUrl: 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json',
   },

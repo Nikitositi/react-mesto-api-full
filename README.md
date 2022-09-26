@@ -5,7 +5,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.68.67
+IP 51.250.68.67
 
 Frontend https://nikitositi.nomoredomains.sbs
 
