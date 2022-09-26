@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors, celebrate, Joi } = require('celebrate');
 
-const path = require('path');
+// const path = require('path');
 const auth = require('./middlewares/auth');
 const { login, createUser, logout } = require('./controllers/users');
 const usersRouter = require('./routes/users');
@@ -103,9 +103,9 @@ app.use(auth);
 app.use('/users', usersRouter);
 app.use('/cards', cardsRouter);
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/../frontend/build/index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '/../frontend/build/index.html'));
+// });
 
 app.use((req, res, next) => {
   next(new NotFoundError('Запрашиваемый ресурс не найден'));
