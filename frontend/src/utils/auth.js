@@ -21,8 +21,7 @@ class Auth {
         password: data.password,
         email: data.email,
       }),
-    })
-      .then(this._checkResponseStatus)
+    }).then(this._checkResponseStatus);
   }
 
   authorize(data) {
@@ -35,7 +34,7 @@ class Auth {
         email: data.email,
       }),
     })
-      .then((res) => res.json())
+      .then(this._checkResponseStatus)
       .then((data) => {
         if (data.token) {
           localStorage.setItem('jwt', data.token);
@@ -59,7 +58,10 @@ class Auth {
       headers: this._headers,
       credentials: 'include',
     })
-      .then(this._checkResponseStatus)
+      .then((res) => res.json())
+      .then((data) => {
+        return data;
+      });
   }
 }
 

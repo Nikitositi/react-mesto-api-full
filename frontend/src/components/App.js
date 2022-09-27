@@ -37,7 +37,7 @@ function App() {
   const [cardIdToDelete, setCardIdToDelete] = useState(null);
 
   const [currentUser, setCurrentUser] = useState({});
-  
+
   // Загрузка карточек и пользователя
   useEffect(() => {
     if (loggedIn) {
@@ -70,7 +70,7 @@ function App() {
       }
     });
   }
-  
+
   // Закрытие попапов на Esc
   useEffect(() => {
     function handleEscClick(evt) {
@@ -194,18 +194,22 @@ function App() {
         setIsInfoToolTipPopupOpen(true);
       })
       .finnaly(() => {
-        setIsInfoToolTipPopupOpen(false)
-      })
+        setIsInfoToolTipPopupOpen(false);
+      });
   }
 
   function handleAuthorization(data) {
-    setEmail(data.email);
     auth
       .authorize(data)
       .then((res) => {
-        console.log(res);
+        if (!res) {
+          setHasInfoTooltipSuccessStatus(false);
+          setIsInfoToolTipPopupOpen(true);
+          return;
+        }
         setHasInfoTooltipSuccessStatus(true);
         setIsInfoToolTipPopupOpen(true);
+        setEmail(data.email);
         setLoggedIn(true);
         history.push('/');
       })

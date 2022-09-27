@@ -3,7 +3,7 @@ require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
-// const { NODE_ENV, JWT_SECRET } = process.env;
+const { NODE_ENV = 'develop', JWT_SECRET = 'dev-secret' } = process.env;
 
 const UniqueValueError = require('../errors/UniqueValueError');
 const BadRequestError = require('../errors/BadRequestError');
@@ -45,12 +45,7 @@ module.exports.getCurrentUser = (req, res, next) => {
         res.send(user);
       }
     })
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        return next(new BadRequestError('Некорректный id'));
-      }
-      return next(err);
-    });
+    .catch((err) => next(err));
 };
 
 module.exports.createUser = (req, res, next) => {
@@ -96,35 +91,35 @@ module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'dev-secret', {
-        expiresIn: '7d',
-      });
+      const token = jwt.sign(
+        { _id: user._id },
+        NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+        {
+          expiresIn: '7d',
+        },
+      );
       res
         .cookie('jwt', token, {
           maxAge: 3600000 * 24 * 7,
           httpOnly: true,
-          sameSite: true,
-          // secure: true,
+          sameSite: 'none',
+          secure: true,
         })
         .send({ token });
     })
-    .catch((err) => {
-      if (err.code === 11000) {
-        return next(
-          new UniqueValueError('Пользователь с таким email уже существует'),
-        );
-      }
-      return next(err);
-    });
+    .catch(next);
 };
 
-module.exports.logout = (req, res) => res
-  .clearCookie('jwt', {
-    sameSite: 'none',
-    secure: true,
-  })
-  .send({ message: 'Вы успешно разлогинились' })
-  .end();
+module.exports.logout = (req, res, next) => {
+  res
+    .clearCookie('jwt', {
+      sameSite: 'none',
+      secure: true,
+    })
+    .send({ message: 'Вы успешно разлогинились' })
+    .end();
+  next();
+};
 
 module.exports.updateUserProfile = (req, res, next) => {
   const { name, about } = req.body;

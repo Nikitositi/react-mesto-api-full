@@ -14,7 +14,7 @@ usersRouter.get(
   '/:userId',
   celebrate({
     params: Joi.object().keys({
-      userId: Joi.string().hex(),
+      userId: Joi.string().hex().length(24),
     }),
   }),
   getUserById,
